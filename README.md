@@ -11,7 +11,7 @@ AI returns fire only when attacked (Return Fire ROE)
 Smooth, non-aggressive maneuvering
 
 Automatically applies settings to all relevant AI groups shortly after mission start
-
+---------------------------------------------------------------------------------------------------------------------
 How It Works
 The script:
 
@@ -29,31 +29,74 @@ Return Fire only (no preemptive engagement)
 
 Non-aggressive maneuvering behavior
 
+------------------------------------------------------------------------------------------------------------------------
+
 Configuration
-lua
-local AI_GROUP_PREFIX = "AI_PLANE_"
-To control which groups are affected, change the AI_GROUP_PREFIX to match the naming convention of your AI aircraft in the mission editor.
+Add Tanuki AI Lifelike Defense v0.07 for DCS World
 
-Installation
-Place the script file in your DCS mission directory.
+- Implement realistic AI aircraft behavior enhancements
+- Introduce human-like imperfections in combat maneuvers:
+  - 30% chance for temporary cautious maneuvers during combat
+  - Randomized evasion settings for different threat types
+- Apply globally to all AI aircraft in both coalitions (BLUE/RED)
+- Add delayed initialization system for compatibility
+- Include status notifications via DCS messaging system
 
-In the mission editor or scripting tool (e.g. MOOSE/MIST), run the script by adding:
+-----------------------------------------------------------------------------------------------------------------------
 
-lua
-dofile("Tanuki_lifelike_defense 0.01.lua")
-Ensure AI aircraft groups you want affected have names beginning with AI_PLANE_ or the prefix you've configured.
+Key Features:
 
-Script Behavior
-lua
-ApplyLifelikeDefenseToAll()
-Runs automatically 5 seconds after the mission starts. No manual triggering is required.
+Core Behavior Settings:
 
-Tested With
-DCS World 2.9
+Aggressive reaction to threats
 
-Multiplayer and single-player missions
+Evasion for gunfire/heat seekers/radar missiles
 
-Aircraft from both RED and BLUE coalitions
+Weapons Free ROE
+
+Aggressive maneuvering baseline
+
+Human Imperfection System:
+
+Randomly downgrades to cautious maneuvers (30% chance)
+
+Temporary 3-7 second cautious states
+
+Randomized 5-10 second check intervals
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Deployment:
+
+Auto-applies to all aircraft groups in both coalitions
+
+Staggered initialization (0-3 second delays)
+
+Coalition-ready retry system (5-second intervals)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Diagnostics:
+
+Script load confirmation message
+
+Detailed logging via env.info()
+
+Error handling for missing groups/controllers
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Technical Notes:
+
+Uses DCS timer API for delayed execution
+
+Compatible with DCS scripting environment
+
+Handles group/controller existence checks
+
+Removed math.randomseed for DCS compatibility
+
+--------------------------------------------------------------------------------------------------------------------------
 
 Credits
 Tanuki AKA altshift2638/Muska – Script Author
